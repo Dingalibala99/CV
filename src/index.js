@@ -28,7 +28,7 @@ function showPosition(position) {
 
       document.getElementById(
         "location"
-      ).innerHTML = `location: ${location.country} ${location.province}, ${location.surburb}`;
+      ).innerHTML = `location: ${location.country}, ${location.province}, ${location.surburb}`;
       document.getElementById(
         "weather"
       ).innerHTML = `Weather: ${currentWeatherTempC} &#176;C`;
