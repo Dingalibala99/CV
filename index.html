@@ -87,9 +87,31 @@
     </div>
     <script>
 
-        function getUserLocation() {
+        function getUserLocation(pos) {
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
 
 
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+
+
+        }
+
+        // function getLocation() {
+        //     if (navigator.geolocation) {
+        //         navigator.geolocation.getCurrentPosition(showPosition);
+        //     } else {
+        //         x.innerHTML = "Geolocation is not supported by this browser.";
+        //     }
+        // }
+
+        function showPosition(position) {
+            const locationURL = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${position.coords.latitude}&lon=${position.coords.longitude}`;
+
+            fetch(locationURL).then(console.log);
 
             fetch(`https://wttr.in/?format=j1&geoip=true`).then(response => response.json()).then(data => {
                 console.log(data)
@@ -110,10 +132,6 @@
                 }
 
             })
-        }
-
-        function showPosition(position) {
-            document.getElementById("location").innerHTML = `Latitude: ${position.coords.latitude} & longitude: ${position.coords.longitude}`;
         }
 
 
