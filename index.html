@@ -85,58 +85,7 @@
 
 
     </div>
-    <script>
-
-        function getUserLocation(pos) {
-
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-
-
-            } else {
-                x.innerHTML = "Geolocation is not supported by this browser.";
-            }
-
-
-        }
-
-        // function getLocation() {
-        //     if (navigator.geolocation) {
-        //         navigator.geolocation.getCurrentPosition(showPosition);
-        //     } else {
-        //         x.innerHTML = "Geolocation is not supported by this browser.";
-        //     }
-        // }
-
-        function showPosition(position) {
-            const locationURL = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${position.coords.latitude}&lon=${position.coords.longitude}`;
-
-            fetch(locationURL).then(console.log);
-
-            fetch(`https://wttr.in/?format=j1&geoip=true`).then(response => response.json()).then(data => {
-                console.log(data)
-                if (data) {
-
-                    const weather = data.weather[0];
-                    const location = data.nearest_area[0].areaName[0];
-                    const region = data.nearest_area[0].region[0].value;
-                    const country = data.nearest_area[0].country[0].value;
-
-                    const currentWeatherTempC = data.weather[0].avgtempC;
-                    const currentWeatherTempF = data.weather[0].avgtempF;
-
-                    document.getElementById("location").innerHTML = `location: ${region}, ${country}`;
-                    document.getElementById("weather").innerHTML = `Weather: ${currentWeatherTempC}c, ${currentWeatherTempC}f`;
-                } else {
-                    document.getElementById("location").innerHTML = "Error fetching location."
-                }
-
-            })
-        }
-
-
-        getUserLocation();
-
+    <script type="text/JavaScript" src="./build/main.js">
     </script>
 </body>
 
